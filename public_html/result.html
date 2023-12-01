@@ -1,0 +1,52 @@
+<!-- result.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Result - My Site{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2>Result</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <canvas id="radarChart" width="400" height="400"></canvas>
+            </div>
+        </div>
+
+    </div>
+    <h2>今日のメッセージ</h2>
+        <p> 少しずつ、小さなことを続けることが大事だ。<br>
+        どんなに苦しいことでも、楽しんでやっていく。<br>
+        そうすると、いつかチャンスがやってくる。登山家　栗木 史多(くりき のぶかず)</p>
+        <p> </p>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('radarChart').getContext('2d');
+        var data = {
+            labels: {{ radar_chart_data.labels|safe }},
+            datasets: [{
+                data: {{ radar_chart_data.data|safe }},
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+        var options = {
+            scale: {
+                angleLines: {
+                    display: true
+                },
+                ticks: {
+                    suggestedMin: 0,
+                    suggestedMax: 50
+                }
+            }
+        };
+        var radarChart = new Chart(ctx, {
+            type: 'radar',
+            data: data,
+            options: options
+        });
+    </script>
+{% endblock %}

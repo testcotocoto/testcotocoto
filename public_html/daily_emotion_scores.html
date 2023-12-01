@@ -1,0 +1,35 @@
+<!-- daily_emotion_scores.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ username }}さんの毎日の感情スコア</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>日付</th>x
+            <th>冷静</th>
+            <th>怒り</th>
+            <th>喜び</th>
+            <th>悲しみ</th>
+            <th>元気さ</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in api_data %}
+            <tr>
+                <td>{{ data.created_at }}</td>
+                <td>{{ data.calm_score }}</td>
+                <td>{{ data.anger_score }}</td>
+                <td>{{ data.joy_score }}</td>
+                <td>{{ data.sorrow_score }}</td>
+                <td>{{ data.energy_score }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="6">データはありません。</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

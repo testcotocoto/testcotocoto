@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>Welcome to My Site!</h2>
+
+<!-- ログインページへのリンク -->
+<a href="{% url 'login' %}">ログイン</a>
+<a href="{% url 'register' %}">アカウント作成</a>
+
+<!-- 音声アップロードページへのリンク -->
+<a href="{% url 'upload' %}">音声アップロード</a>
+
+<!-- daily_emotion_scores ページへのリンク -->
+<a href="{% url 'daily_emotion_scores' %}">毎日の感情スコア</a>
+
+{% endblock %}

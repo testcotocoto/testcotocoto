@@ -1,0 +1,18 @@
+<!-- login.html -->
+
+{% block content %}
+<h2>Login</h2>
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <label for="username">ユーザー名:</label>
+    <input type="text" id="username" name="username" required><br>
+
+    <label for="password">パスワード:</label>
+    <input type="password" id="password" name="password" required><br>
+
+    <button type="submit">ログイン</button>
+</form>
+{% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+{% endif %}
+{% endblock %}

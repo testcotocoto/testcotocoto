@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}音声をアップロード{% endblock %}
+
+{% block content %}
+{% if not radar_chart_data %}
+    <h2>今日のメッセージを声に出してみましょう。好きな言葉でもOK!</h2>
+    <p> <br>
+        <br>
+        <p/>
+    <form id="uploadForm" enctype="multipart/form-data" method="post" action="">
+        {% csrf_token %}
+        <label for="audio_file">音声ファイルを選択してください (m4a形式):</label>
+        <input type="file" id="audio_file" name="audio_file" accept=".m4a" required><br>
+
+        <button type="submit">アップロード</button>
+    </form>
+    <br>
+
+{% endif %}
+
+{% if radar_chart_data %}
+    <h2>{{ user.username }}さんの今の気持ち</h2>
+    <p>{{ now|date:"Y年m月d日" }}</p>
+    <p> {{ now|time:"H:i" }}</p>
+    <p>{{radar_chart_data}}</p>
+
+    <!-- レーダーチャートを表示するCanvas要素 -->
+    <canvas id="radarChart" width="400" height="300"></canvas>
+
+
+{% endif %}
+{% endblock %}
